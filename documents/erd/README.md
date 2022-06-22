@@ -1,10 +1,14 @@
 # BLOG-ADVANCED-ERD
 
 > ERD 버전 관리
+>
+> [2022\. 06. 09 v1.0](#v1.0)
+>
+> [2022. 06. 15 v1.1](#v1.1)
 
+<br>
 
-
-## V1.0
+## v1.0
 
 > 2022\. 06. 09
 
@@ -61,3 +65,40 @@
 - LIKE_USER_COMMENT
   - 유저-댓글 간의 좋아요 관계 표현
   - USER, COMMENT FK만을 포함하는 테이블로, 유저가 좋아요한 댓글과 댓글에 좋아요한 유저를 계산
+
+<br>
+
+## v1.1
+
+> 2022\. 06. 15
+>
+> 추가, 수정 부분만 명시
+
+![](./src/erd-v1.1.png)
+
+##### 테이블 목록
+
+- USER, POST, COMMENT, HIT, HIT_SESSION
+
+##### 설명
+
+- USER
+  - ID: 타입을 bigint에서 int로 변경
+  - PASSWORD: 추후 패스워드 들어갈 것을 고려하여 컬럼 추가
+  - CREATED_AT / UPDATED_AT
+    - 사용자 가입일시, 정보 수정 일시를 고려하여 created_at, updated_at 추가
+- POST
+  - ID: 타입을 bigint에서 int로 변경
+  - CREATED_AT / UPDATED_AT: timestamp로 타입 변경
+- COMMENT
+  - SORTS: sorts 컬럼을 두어야 하는지 고민 필요
+  - CREATED_AT / UPDATED_AT: timestamp로 타입 변경
+- HIT
+  - ID: hit : post = 1:1 관계
+  - COUNT: 합산한 조회수
+- HIT_SESSION
+  - 실제 실시간 조회수가 기록되는 테이블
+
+##### 추가 의문사항
+
+- 조회수에 대한 통계를 내기 위해 history 테이블 필요 유무
