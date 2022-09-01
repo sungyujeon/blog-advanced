@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "USERS")
-@Getter @Setter
+@Getter
 public class User {
 
     @Id @GeneratedValue

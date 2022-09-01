@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "LIKE_POST")
-@Getter @Setter
+@Getter
 public class LikePost {
 
     @Id @GeneratedValue

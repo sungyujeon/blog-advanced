@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "LIKE_COMMENT")
 @Getter
-@Setter
 public class LikeComment {
 
     @Id
