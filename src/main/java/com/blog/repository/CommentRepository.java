@@ -1,24 +1,25 @@
 package com.blog.repository;
 
-import com.blog.domain.User;
+import com.blog.domain.Comment;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository
-public class UserRepository {
+public class CommentRepository {
 
     @PersistenceContext
     private EntityManager em;
 
-    public long save(User user) {
-        em.persist(user);
-        return user.getId();
+    public Long save(Comment comment) {
+        em.persist(comment);
+        return comment.getId();
     }
 
-    public User findById(Long id) {
-        return em.find(User.class, id);
+    public Comment find(Long id) {
+        return em.find(Comment.class, id);
     }
+
 
 }
