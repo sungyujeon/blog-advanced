@@ -12,12 +12,12 @@ public class UserRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public Long save(User user) {
+    public long save(User user) {
         em.persist(user);
         return user.getId();
     }
 
-    public User find(Long id) {
+    public User findById(Long id) {
         return em.find(User.class, id);
     }
 
