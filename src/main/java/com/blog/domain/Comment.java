@@ -3,13 +3,12 @@ package com.blog.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
-public class Comment {
+public class Comment extends BaseEntity {
 
     @Id @GeneratedValue
     private Long id;
@@ -31,12 +30,4 @@ public class Comment {
 
     @Column(name = "is_deleted")
     private boolean isDeleted;
-
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-    @Column(name = "modified_at")
-    private LocalDateTime modifiedAt;
-
-
-
 }
