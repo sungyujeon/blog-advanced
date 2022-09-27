@@ -112,3 +112,11 @@
 ![](./src/erd-v2.0.png)
 
 - 2022.07.13 오프라인 회의 시 확정한 ERD
+
+<br>
+
+## ERD - workbench generated
+
+![](./src/erd-workbench-generated.png)
+
+- 2022.09.27 workbench에서 자동 생성한 ERD
