@@ -22,10 +22,10 @@ public class Comment extends BaseEntity {
     private Post post;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "parent_id")
+    @JoinColumn(name = "parent_comment_id")
     private Comment parent;
 
-    @Lob
+    @Column(length = 3000)
     private String content;
 
     @Column(name = "is_deleted")
