@@ -19,13 +19,4 @@ public class User extends BaseEntity {
     private String email;
     private String password;
 
-    public static User createUser(UserCreateCommand command) {
-        User user = new User();
-        user.name = command.getName();
-        user.email = command.getEmail();
-        user.password = command.getPassword();
-
-        return user;
-    }
-
 }

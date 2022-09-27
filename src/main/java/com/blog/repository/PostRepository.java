@@ -1,23 +1,10 @@
 package com.blog.repository;
 
 import com.blog.domain.Post;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 @Repository
-public class PostRepository {
+public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @PersistenceContext
-    private EntityManager em;
-
-    public Long save(Post post) {
-        em.persist(post);
-        return post.getId();
-    }
-
-    public Post find(Long id) {
-        return em.find(Post.class, id);
-    }
 }
