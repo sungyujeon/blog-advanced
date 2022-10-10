@@ -28,6 +28,5 @@ public class Comment extends BaseEntity {
     @Column(length = 3000)
     private String content;
 
-    @Column(name = "is_deleted")
     private boolean isDeleted;
 }
