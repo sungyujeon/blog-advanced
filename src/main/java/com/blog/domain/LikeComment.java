@@ -3,14 +3,13 @@ package com.blog.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 import static javax.persistence.FetchType.*;
 
 @Entity
 @Table(name = "LIKE_COMMENT")
 @Getter
-public class LikeComment {
+public class LikeComment extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -23,10 +22,5 @@ public class LikeComment {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "comment_id")
     private Comment comment;
-
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-    @Column(name = "modified_at")
-    private LocalDateTime modifiedAt;
 
 }

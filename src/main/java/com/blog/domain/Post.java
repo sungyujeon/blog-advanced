@@ -3,13 +3,12 @@ package com.blog.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
-public class Post {
+public class Post extends BaseEntity {
 
     @Id @GeneratedValue
     private Long id;
@@ -22,10 +21,5 @@ public class Post {
 
     @Lob
     private String content;
-
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-    @Column(name = "modified_at")
-    private LocalDateTime modifiedAt;
 
 }
