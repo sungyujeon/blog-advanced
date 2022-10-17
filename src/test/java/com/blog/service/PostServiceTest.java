@@ -22,4 +22,18 @@ class PostServiceTest {
         assertThat(findPost.getId()).isEqualTo(7L);
     }
 
+    @Test
+    @Transactional
+    void 게시글_작성() {
+        Post createdPost = postService.createPost(1L, createPostCreateRequest());
+
+        Post findPost = postService.find(createdPost.getId());
+
+        assertThat(createdPost.getId()).isEqualTo(findPost.getId());
+    }
+
+    private PostCreateRequest createPostCreateRequest() {
+        return new PostCreateRequest("title-test", "content-test");
+    }
+
 }
