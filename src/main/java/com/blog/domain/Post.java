@@ -1,11 +1,11 @@
 package com.blog.domain;
 
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
+import java.time.LocalDateTime;
 import java.time.LocalDateTime;
 
 import static javax.persistence.FetchType.*;
@@ -18,7 +18,7 @@ public class Post extends BaseEntity {
     @Id @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -34,5 +34,4 @@ public class Post extends BaseEntity {
         this.createdAt = LocalDateTime.now();
         this.modifiedAt = LocalDateTime.now();
     }
-
 }
