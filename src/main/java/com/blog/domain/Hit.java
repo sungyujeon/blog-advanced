@@ -1,10 +1,7 @@
 package com.blog.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
-
-import javax.persistence.*;
-
-import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
@@ -13,7 +10,7 @@ public class Hit extends BaseEntity {
     @Id @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
 

@@ -2,40 +2,37 @@ package com.blog.repository;
 
 import com.blog.domain.Post;
 import com.blog.domain.User;
-import org.assertj.core.api.Assertions;
+import com.blog.domain.command.UserCreateCommand;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 class PostRepositoryTest {
 
     @Autowired
     PostRepository postRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @Test
     @Transactional
     public void testPost() {
         //given
-        User user = new User();
-        user.setName("user1");
+        User user = User.createUser(UserCreateCommand.builder().build());
 
-        Post post = new Post();
-        post.setUser(user);
-        post.setTitle("title1");
-        post.setContent("content1");
+        Post post = new Post(user, "title", "content");
 
         //when
-        Long savedId = postRepository.save(post);
-        Post findPost = postRepository.find(savedId);
+        Post savedPost = postRepository.save(post);
 
         //then
-        assertThat(findPost.getTitle()).isEqualTo(post.getTitle());
-        assertThat(findPost.getContent()).isEqualTo(post.getContent());
-        assertThat(findPost.getUser().getName()).isEqualTo(user.getName());
+        assertThat(savedPost.getTitle()).isEqualTo(post.getTitle());
     }
 
 }
