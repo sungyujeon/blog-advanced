@@ -1,0 +1,3 @@
+###
+GET {{host}}/api/post/7
+Accept: application/json
