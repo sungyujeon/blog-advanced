@@ -1,0 +1,14 @@
+### save user
+POST {{host}}/api/user
+Content-Type: application/json
+
+{
+  "name": "user1",
+  "email": "sample email",
+  "password": "user!"
+
+}
+
+### find user by userId
+GET {{host}}/api/user/1
+Accept: application/json

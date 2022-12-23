@@ -1,13 +1,12 @@
 package com.blog.domain;
 
 import com.blog.domain.command.UserCreateCommand;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "USERS")
@@ -16,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class User extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
@@ -27,8 +26,8 @@ public class User extends BaseEntity {
         user.name = command.getName();
         user.email = command.getEmail();
         user.password = command.getPassword();
-        user.createdAt = command.getCreateAt();
-        user.modifiedAt = command.getModifiedAt();
+        user.createdAt = LocalDateTime.now();
+        user.modifiedAt = LocalDateTime.now();
 
         return user;
     }
