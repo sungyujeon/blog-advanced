@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
@@ -21,7 +23,6 @@ class PostServiceTest {
     PostService postService;
     @Autowired
     UserService userService;
-
 
     User user;
 
@@ -48,16 +49,36 @@ class PostServiceTest {
         assertThat(post.getId()).isEqualTo(findPost.getId());
     }
 
+    @Test
+    @Transactional
+    void 게시글_제목_내용_수정() {
+        Post post = postService.create(user, createPostCreateRequest());
+        post.changeTitle("changed title");
+        post.changeContent("changed content");
+
+        Post findPost = postService.findById(post.getId());
+
+        assertThat(findPost.getTitle()).isEqualTo(post.getTitle());
+        assertThat(findPost.getContent()).isEqualTo(post.getContent());
+    }
+
+    @Test
+    @Transactional
+    void 게시글_삭제() {
+        Post post = postService.create(user, createPostCreateRequest());
+        postService.delete(post);
+
+        List<Post> findPosts = postService.findAll();
+
+        assertThat(findPosts.size()).isEqualTo(0);
+    }
+
     private PostCreateRequest createPostCreateRequest() {
         return new PostCreateRequest("title-test", "content-test");
     }
 
     private User createUser() {
-        UserCreateRequest userCreateRequest = new UserCreateRequest();
-        userCreateRequest.setName("sample user1");
-        userCreateRequest.setEmail("sample email1");
-        userCreateRequest.setPassword("user1!");
-
+        UserCreateRequest userCreateRequest = new UserCreateRequest("sample user1", "sample email1", "user1!");
         return userService.create(userCreateRequest);
     }
 }
