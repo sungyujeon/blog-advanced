@@ -1,3 +1,12 @@
-###
-GET {{host}}/api/post/7
+### save post
+POST {{host}}/api/post
+Content-Type: application/json
+
+{
+  "title": "sample title",
+  "content": "sample content"
+}
+
+### find post by postId
+GET {{host}}/api/post/1
 Accept: application/json

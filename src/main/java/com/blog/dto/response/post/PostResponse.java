@@ -1,12 +1,11 @@
 package com.blog.dto.response.post;
 
 import com.blog.domain.Post;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
+@Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class PostResponse {
