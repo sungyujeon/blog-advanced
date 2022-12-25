@@ -1,0 +1,11 @@
+### like
+POST {{host}}/api/1/like
+Content-Type: application/json
+
+### unlike
+POST {{host}}/api/1/unlike
+Content-Type: application/json
+
+{
+  "likePostId": 1
+}
