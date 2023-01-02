@@ -37,10 +37,9 @@ public class LikePostService {
     }
 
     @Transactional
-    public void unlike(Long likePostId) {
-        Optional<LikePost> likePostOptional = likePostRepository.findById(likePostId);
-        if (likePostOptional.isPresent()) {
-            likePostRepository.delete(findById(likePostId));
-        }
+    public LikePost unlike(Long likePostId) {
+        LikePost likePost = findById(likePostId);
+        likePostRepository.delete(likePost);
+        return likePost;
     }
 }
