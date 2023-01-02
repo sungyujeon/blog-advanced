@@ -4,9 +4,9 @@ import com.blog.domain.LikePost;
 import com.blog.domain.User;
 import com.blog.dto.request.likepost.LikePostRequest;
 import com.blog.dto.response.likepost.LikePostResponse;
+import com.blog.dto.response.likepost.UnlikePostResponse;
 import com.blog.service.LikePostService;
 import com.blog.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +33,9 @@ public class LikePostController {
     }
 
     @PostMapping("/unlike")
-    public void postUnlike(@PathVariable("postId") Long postId, @RequestBody LikePostRequest request) {
-        likePostService.unlike(request.getLikePostId());
+    public ResponseEntity<UnlikePostResponse> postUnlike(@PathVariable("postId") Long postId, @RequestBody LikePostRequest request) {
+        LikePost unlikePost = likePostService.unlike(request.getLikePostId());
+        return ResponseEntity.ok(UnlikePostResponse.of(unlikePost));
     }
 
     private User findUser() {
