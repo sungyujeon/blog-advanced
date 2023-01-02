@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ class LikePostServiceTest {
     }
 
     @Test
+    @Transactional
     void 좋아요_내역_존재시_조회() {
         LikePost likePost = likePostService.like(user, post.getId());
         LikePost findLikePost = likePostService.findById(likePost.getId());
@@ -38,6 +40,7 @@ class LikePostServiceTest {
     }
 
     @Test
+    @Transactional
     void 좋아요_내역_미존재시_조회() {
         assertThatThrownBy(() -> likePostService.findById(1L))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -45,6 +48,7 @@ class LikePostServiceTest {
     }
 
     @Test
+    @Transactional
     void 좋아요() {
         for (int i = 0; i < 2; i++) {
             likePostService.like(user, post.getId());
@@ -56,6 +60,7 @@ class LikePostServiceTest {
     }
 
     @Test
+    @Transactional
     void 좋아요_내역_존재시_취소() {
         LikePost likePost = likePostService.like(user, post.getId());
         likePostService.unlike(likePost.getId());
@@ -66,6 +71,7 @@ class LikePostServiceTest {
     }
 
     @Test
+    @Transactional
     void 좋아요_내역_미존재시_취소() {
         assertThatThrownBy(() -> likePostService.unlike(1L))
                 .isInstanceOf(IllegalArgumentException.class)
