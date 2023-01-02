@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -26,14 +26,18 @@ public class LikePostService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시글 좋아요"));
     }
 
+    public List<LikePost> findAll() {
+        return likePostRepository.findAll();
+    }
+
     @Transactional
-    public Optional<LikePost> like(User user, Long postId) {
+    public LikePost like(User user, Long postId) {
         LikePost likePost = likePostRepository.findLike(user.getId(), postId);
         if (likePost == null) {
             Post post = postRepository.findById(postId).get();
-            return Optional.of(likePostRepository.save(new LikePost(user, post)));
+            return likePostRepository.save(new LikePost(user, post));
         }
-        return Optional.empty();
+        return likePost;
     }
 
     @Transactional

@@ -12,8 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @Slf4j
 @RequestMapping("/api/{postId}")
 @RestController
@@ -25,11 +23,8 @@ public class LikePostController {
 
     @PostMapping("/like")
     public ResponseEntity<LikePostResponse> postLike(@PathVariable("postId") Long postId) {
-        Optional<LikePost> likePostOptional = likePostService.like(findUser(), postId);
-        if (likePostOptional.isEmpty()) {
-            return ResponseEntity.ok(LikePostResponse.ofNullable(null));
-        }
-        return ResponseEntity.ok(LikePostResponse.of(likePostOptional.get()));
+        LikePost likePost = likePostService.like(findUser(), postId);
+        return ResponseEntity.ok(LikePostResponse.of(likePost));
     }
 
     @PostMapping("/unlike")
