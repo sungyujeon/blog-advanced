@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -16,8 +17,8 @@ public class UserResponse {
     private Long id;
     private String name;
     private String email;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime modifiedAt;
 
     public static UserResponse of(User user) {
         return new UserResponse(user.getId(),

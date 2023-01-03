@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "LIKE_POST")
@@ -28,7 +29,7 @@ public class LikePost extends BaseEntity {
     public LikePost(User user, Post post) {
         this.user = user;
         this.post = post;
-        this.createdAt = LocalDateTime.now();
-        this.modifiedAt = LocalDateTime.now();
+        this.createdAt = ZonedDateTime.now();
+        this.modifiedAt = ZonedDateTime.now();
     }
 }

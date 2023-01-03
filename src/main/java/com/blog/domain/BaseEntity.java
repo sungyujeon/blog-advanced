@@ -9,6 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Getter
 @EntityListeners(AuditingEntityListener.class)
@@ -16,9 +17,9 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity {
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    protected LocalDateTime createdAt;
+    protected ZonedDateTime createdAt;
 
     @LastModifiedDate
     @Column(nullable = false)
-    protected LocalDateTime modifiedAt;
+    protected ZonedDateTime modifiedAt;
 }

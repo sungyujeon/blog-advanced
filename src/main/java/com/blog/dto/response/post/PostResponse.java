@@ -4,6 +4,7 @@ import com.blog.domain.Post;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -13,8 +14,8 @@ public class PostResponse {
     private Long id;
     private String title;
     private String content;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime modifiedAt;
     private Long userId;
 
     public static PostResponse of(Post post) {

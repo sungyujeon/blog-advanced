@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "USERS")
@@ -26,8 +27,8 @@ public class User extends BaseEntity {
         user.name = command.getName();
         user.email = command.getEmail();
         user.password = command.getPassword();
-        user.createdAt = LocalDateTime.now();
-        user.modifiedAt = LocalDateTime.now();
+        user.createdAt = ZonedDateTime.now();
+        user.modifiedAt = ZonedDateTime.now();
 
         return user;
     }
